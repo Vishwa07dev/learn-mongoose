@@ -15,10 +15,32 @@ const addressSchema = new mongoose.Schema({
 })
 const studentSchema = new mongoose.Schema({
     name: String,
-    age: Number,
-    email: String,
-    createdAt: Date,
-    updatedAt: Date,
+    age: {
+        type: Number,
+        min: 16
+
+    },
+    email: {
+        type: String,
+        required: true,
+        lowercase: true, // it will covert the email into the lower case and then store in the db,
+        minLength :15  // anything less than 10 will fail
+
+    },
+    createdAt: {
+        // I want to default to a new date
+        type: Date,
+        immutable: true,  // This will ensure the createdAt column is never updated but once in the start
+        default: () => {
+            return Date.now();
+        }
+    },
+    updatedAt: {
+        type: Date,
+        default: () => {
+            return Date.now();
+        }
+    },
     course: mongoose.SchemaTypes.ObjectId,
     subjects: [String],
     address: addressSchema

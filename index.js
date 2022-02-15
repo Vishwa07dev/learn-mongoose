@@ -1,7 +1,7 @@
 /**
  * This file will have the logic to play with the mongodb
  * 
- * 1. We will learn about the nested schema
+ * 1. We will learn about additional validations
  * 2. Type check
  */
 
@@ -41,8 +41,9 @@ async function dbOperations() {
 
         const student = await Student.create({
             name: "Vishwa",
-            age: 99, // if we change this to string, it will throw error
-            subjects : ["NW", "DSnALgo"]
+            age: 16, // It should be atleat 16, else will throw error
+            subjects : ["NW", "DSnALgo"],
+            email : "Kankvish@gmail.com"  // If we don't pass this, it will throw the error
         });
         console.log(student);
 
