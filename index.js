@@ -1,8 +1,7 @@
 /**
  * This file will have the logic to play with the mongodb
  * 
- * 1. We will learn about additional validations
- * 2. Type check
+ * 1. We learn the custom validator
  */
 
 const mongoose = require('mongoose');
@@ -22,15 +21,6 @@ mongoose.connect("mongodb://localhost/demodb", () => {
 
 dbOperations();
 
-/**
- * Output of the above operation
- * {
-  name: 'Vishwa',
-  age: 99,
-  _id: new ObjectId("620b1bd88dc62dee97556d4b"),  // auto created id of the schema
-  __v: 0
-}
- */
 
 /**
  * Using Asyn Await in place of Promises
@@ -42,9 +32,8 @@ async function dbOperations() {
         const student = await Student.create({
             name: "Vishwa",
             age: 16, // It should be atleat 16, else will throw error
-            subjects : ["NW", "DSnALgo"],
             email : "Kankvish@gmail.com"  // If we don't pass this, it will throw the error
-        });
+        } );   
         console.log(student);
 
     }catch(e){

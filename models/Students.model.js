@@ -42,7 +42,13 @@ const studentSchema = new mongoose.Schema({
         }
     },
     course: mongoose.SchemaTypes.ObjectId,
-    subjects: [String],
+    subjects: {
+        type :[String] ,
+        validate : {   // Custom validator in the schema
+            validator : s => s.length != 0 ,
+            message : props => `${props.value}   subject list is not provided`
+        }
+    } ,
     address: addressSchema
 })
 
