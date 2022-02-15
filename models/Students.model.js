@@ -41,7 +41,11 @@ const studentSchema = new mongoose.Schema({
             return Date.now();
         }
     },
-    course: mongoose.SchemaTypes.ObjectId,
+    course: {
+        type : mongoose.SchemaTypes.ObjectId,
+        ref : "User"
+    },
+    
     subjects: {
         type :[String] ,
         validate : {   // Custom validator in the schema
