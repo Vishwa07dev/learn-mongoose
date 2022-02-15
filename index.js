@@ -1,5 +1,8 @@
 /**
  * This file will have the logic to play with the mongodb
+ * 
+ * 1. We will learn about the nested schema
+ * 2. Type check
  */
 
 const mongoose = require('mongoose');
@@ -34,9 +37,17 @@ dbOperations();
  * Students learning this module should be aware of async await 
  */
 async function dbOperations() {
-    const student = await Student.create({
-        name: "Vishwa",
-        age: 99
-    });
-    console.log(student);
+    try{
+
+        const student = await Student.create({
+            name: "Vishwa",
+            age: 99, // if we change this to string, it will throw error
+            subjects : ["NW", "DSnALgo"]
+        });
+        console.log(student);
+
+    }catch(e){
+        console.log(e.message);
+    }
+    
 }
